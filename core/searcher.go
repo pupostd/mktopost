@@ -47,9 +47,9 @@ func (s *Searcher) addPlacesToSearch(path string) {
 }
 
 func (s *Searcher) loadPlacesToSearch() {
-	s.placesToSearch = []string{"/home/pupo/"}
-	s.addPlacesToSearch("/tmp/to_publish_hidden/")
-	s.addPlacesToSearch("/tmp/")
+	s.placesToSearch = []string{"../resource/to_publish/"}
+	s.addPlacesToSearch("../resource/to_parse/")
+	s.addPlacesToSearch("../resource/to_publish_hidden/")
 
 	fmt.Printf("Length of placesToSearch is %d\n", len(s.placesToSearch))
 }
