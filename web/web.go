@@ -19,8 +19,8 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if err == nil {
 		w.Write(data)
 	} else {
-		w.WriteHeader(404)
-		w.Write([]byte("404 Bro ... " + http.StatusText(404)))
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("404 Bro ... " + http.StatusText(http.StatusNotFound)))
 	}
 
 }
