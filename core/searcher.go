@@ -2,9 +2,9 @@ package core
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
-	"log"
 )
 
 //Searcher A class to search and read the resource requested.
@@ -49,8 +49,8 @@ func (s *Searcher) addPlacesToSearch(path string) {
 
 func (s *Searcher) loadPlacesToSearch() {
 
-	conf := Configuration{}
-	conf.Load()
+	conf := PropertiesFile{}
+	conf.LoadJSON("")
 
 	for _, v := range conf.Properties {
 		s.addPlacesToSearch(v.Value)

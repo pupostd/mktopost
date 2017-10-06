@@ -5,15 +5,15 @@ import (
 )
 
 func TestConfiguration(t *testing.T) {
-	conf := Configuration{}
-	conf.Load()
+	f := PropertiesFile{}
+	f.LoadJSON("")
 
-	if len(conf.Properties) != 3 {
+	if len(f.Properties) != 3 {
 		t.Error("Not enough properties on property file! Shoud be 3.")
 	}
 
 	var count int
-	for _, v := range conf.Properties {
+	for _, v := range f.Properties {
 
 		if "to.parse" == v.Name {
 			if "../resource/to_parse/" == v.Value {
