@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"log"
 )
 
 //Searcher A class to search and read the resource requested.
@@ -16,7 +17,7 @@ func (s *Searcher) SearchRequested(fileName string) string {
 
 	s.loadPlacesToSearch()
 
-	fmt.Printf("Received name to search %s\n", fileName)
+	log.Printf("Received name to search %s", fileName)
 
 	var fileNameFound string
 	var requestedFile *os.File
@@ -32,7 +33,7 @@ func (s *Searcher) SearchRequested(fileName string) string {
 	}
 
 	if err != nil || requestedFile == nil {
-		fmt.Printf(fmt.Errorf("File could not be found.\n").Error())
+		log.Printf(fmt.Errorf("file could not be found").Error())
 	}
 
 	if requestedFile != nil {
@@ -47,9 +48,13 @@ func (s *Searcher) addPlacesToSearch(path string) {
 }
 
 func (s *Searcher) loadPlacesToSearch() {
-	s.placesToSearch = []string{"../resource/to_publish/"}
-	s.addPlacesToSearch("../resource/to_parse/")
-	s.addPlacesToSearch("../resource/to_publish_hidden/")
 
-	fmt.Printf("Length of placesToSearch is %d\n", len(s.placesToSearch))
+	conf := Configuration{}
+	conf.Load()
+
+	for _, v := range conf.Properties {
+		s.addPlacesToSearch(v.Value)
+	}
+
+	log.Printf("Length of placesToSearch is %d", len(s.placesToSearch))
 }

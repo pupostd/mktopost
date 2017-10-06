@@ -1,0 +1,17 @@
+{
+  "Properties": [
+    {
+      "Name": "to.parse",
+      "Value": "../resource/to_parse/"
+    },
+    {
+      "Name": "to.publish",
+      "Value": "../resource/to_publish/"
+    },
+    {
+      "Name": "to.publish.hidden",
+      "Value": "../resource/to_publish_hidden/"
+    }
+  ]
+}
+
