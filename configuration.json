@@ -3,6 +3,10 @@
     {
       "Name": "storage.folders",
       "Value": "../resource/md/;../resource/html/"
+    },
+    {
+      "Name": "parser.html.folder",
+      "Value": "../resource/html/"
     }
   ]
 }

@@ -1,4 +1,4 @@
-package core
+package model
 
 import (
 	"encoding/json"
@@ -32,7 +32,7 @@ func (c *Configuration) For(name string) string {
 }
 
 func (c *Configuration) load() {
-	b, name := readFileAsBuffer(configurationFile)
+	b, name := c.readFileAsBuffer(configurationFile)
 	err := json.Unmarshal(b, &c)
 
 	if err != nil {
@@ -41,7 +41,7 @@ func (c *Configuration) load() {
 
 }
 
-func readFileAsBuffer(name string) ([]byte, string) {
+func (c Configuration) readFileAsBuffer(name string) ([]byte, string) {
 	b, err := ioutil.ReadFile(name)
 
 	if err != nil {

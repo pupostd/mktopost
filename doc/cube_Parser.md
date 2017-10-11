@@ -15,7 +15,6 @@ A class to transform a requested resource/file in a new format.
 
 #### Message Protocol
 * toHtml(file File) string
-* save(file File) err
 
 #### Events Generated
 None.

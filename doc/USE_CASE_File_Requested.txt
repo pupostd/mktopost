@@ -1,0 +1,15 @@
+USE CASE File Requested
+
+> Pager receives a request for the resource eg. "home".
+> Pager call Searcher.LookFor!
+	> Searcher call Storage.Where?
+		> Storage call Configuration.For "storage.folders" key.
+		    > Configuration gives back the value for the key provided.
+	> Searcher iterates over the "storage.folders" property values
+	> if Searcher finds more than one file it will asks Chooser.WhichOne?
+		> Chooser apply the rules and if needed call Parser.ToHtml!
+			> Parser do its job and call Storage.Save
+	> Searcher gives back the resource requested to Pager
+> Pager.prepareResponse
+> Pager returns
+	

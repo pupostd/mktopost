@@ -1,4 +1,4 @@
-package core
+package model
 
 import (
 	"fmt"
@@ -15,7 +15,22 @@ type Searcher struct {
 func (s *Searcher) LookFor(name string) string {
 	log.Printf("Received name to search %s", name)
 
-	var found string
+	var content string
+
+	if s.search(name) {
+		p := Parser{}
+		if len(s.filesFound) > 1 {
+			c := Chooser{}
+			content = p.ToHTML(c.WhichOne(s.filesFound))
+		} else {
+			content = p.ToHTML(s.filesFound[0])
+		}
+	}
+
+	return content
+}
+
+func (s *Searcher) search(name string) bool {
 	var file *os.File
 	var err error
 
@@ -33,9 +48,8 @@ func (s *Searcher) LookFor(name string) string {
 
 	if err != nil && s.filesFound == nil {
 		log.Printf(fmt.Errorf("file could not be found").Error())
+		return false
 	}
 
-	found = s.filesFound[0].Name()
-
-	return found
+	return true
 }
