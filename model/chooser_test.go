@@ -1,11 +1,11 @@
 package model
 
 import (
-	"testing"
 	"os"
+	"testing"
 )
 
-func TestWhichOne(t *testing.T)  {
+func TestWhichOne(t *testing.T) {
 	c := Chooser{}
 	var files []*os.File = nil
 

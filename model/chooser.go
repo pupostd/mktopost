@@ -1,12 +1,11 @@
 package model
 
 import (
-	"os"
 	"log"
+	"os"
 )
 
 type Chooser struct {
-
 }
 
 func (c *Chooser) WhichOne(files []*os.File) *os.File {

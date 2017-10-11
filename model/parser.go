@@ -1,11 +1,11 @@
 package model
 
 import (
-	"os"
-	"gopkg.in/russross/blackfriday.v2"
 	"bytes"
+	"gopkg.in/russross/blackfriday.v2"
 	"io"
 	"log"
+	"os"
 	"path/filepath"
 	"strings"
 )
@@ -13,7 +13,6 @@ import (
 const parserHtmlFolder = "parser.html.folder"
 
 type Parser struct {
-
 }
 
 func (p *Parser) ToHTML(file *os.File) string {

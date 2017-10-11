@@ -1,13 +1,13 @@
 package model
 
 import (
-	"testing"
-	"os"
+	"bytes"
 	"gopkg.in/russross/blackfriday.v2"
 	"io"
-	"bytes"
+	"os"
 	"path/filepath"
 	"strings"
+	"testing"
 )
 
 func TestWhere(t *testing.T) {
@@ -36,7 +36,6 @@ func TestSave(t *testing.T) {
 	out := blackfriday.Run(buf.Bytes())
 	name := filepath.Base(f.Name())
 	name = (strings.Split(name, "."))[0] + ".html"
-
 
 	s := Storage{}
 	s.Save(name, out, "../resource/test/")

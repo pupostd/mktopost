@@ -1,12 +1,12 @@
 package model
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"strings"
-	"bytes"
-	"io"
 )
 
 //Searcher A class to search for a name on some folders.
@@ -28,9 +28,10 @@ func (s *Searcher) LookFor(name string) string {
 			file = s.filesFound[0]
 		}
 
+		return s.content(file)
 	}
 
-	return s.content(file)
+	return ""
 }
 
 func (s *Searcher) search(name string) bool {

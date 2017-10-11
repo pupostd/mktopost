@@ -1,9 +1,9 @@
 package model
 
 import (
-	"strings"
-	"log"
 	"io/ioutil"
+	"log"
+	"strings"
 )
 
 const storageFolders = "storage.folders"
@@ -24,7 +24,7 @@ func (s *Storage) Save(name string, content []byte, here string) {
 
 	//log.Println(string(content))
 
-	err := ioutil.WriteFile(here + "/" + name, []byte(content), 0644)
+	err := ioutil.WriteFile(here+"/"+name, []byte(content), 0644)
 
 	if err != nil {
 		log.Fatalf("Could not write file %s to %s", name, here)
