@@ -21,9 +21,6 @@ func (s *Storage) Where() []string {
 }
 
 func (s *Storage) Save(name string, content []byte, here string) {
-
-	//log.Println(string(content))
-
 	err := ioutil.WriteFile(here+"/"+name, []byte(content), 0644)
 
 	if err != nil {
