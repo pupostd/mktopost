@@ -1,6 +1,14 @@
 package model
 
-import "testing"
+import (
+	"testing"
+	"os"
+	"gopkg.in/russross/blackfriday.v2"
+	"io"
+	"bytes"
+	"path/filepath"
+	"strings"
+)
 
 func TestWhere(t *testing.T) {
 	s := Storage{}
@@ -8,6 +16,31 @@ func TestWhere(t *testing.T) {
 	if folders == nil {
 		t.Error("Empty array! Some paths should be returned.")
 	}
+}
+
+func TestSave(t *testing.T) {
+
+	os.Remove("../resource/test/post_one.md.html")
+
+	f, err := os.Open("../resource/md/post_one.md")
+	if err != nil {
+		t.Error("Could not load file md for testing save.")
+	}
+
+	buf := bytes.NewBuffer(nil)
+	_, err = io.Copy(buf, f)
+	if err != nil {
+		t.Error("Could not transform markdown to html.")
+	}
+
+	out := blackfriday.Run(buf.Bytes())
+	name := filepath.Base(f.Name())
+	name = (strings.Split(name, "."))[0] + ".html"
+
+
+	s := Storage{}
+	s.Save(name, out, "../resource/test/")
+	f.Close()
 }
 
 func TestFolderContent(t *testing.T) {

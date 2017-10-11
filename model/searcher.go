@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
+	"bytes"
+	"io"
 )
 
 //Searcher A class to search for a name on some folders.
@@ -15,19 +18,19 @@ type Searcher struct {
 func (s *Searcher) LookFor(name string) string {
 	log.Printf("Received name to search %s", name)
 
-	var content string
+	var file *os.File
 
 	if s.search(name) {
-		p := Parser{}
 		if len(s.filesFound) > 1 {
 			c := Chooser{}
-			content = p.ToHTML(c.WhichOne(s.filesFound))
+			file = c.WhichOne(s.filesFound)
 		} else {
-			content = p.ToHTML(s.filesFound[0])
+			file = s.filesFound[0]
 		}
+
 	}
 
-	return content
+	return s.content(file)
 }
 
 func (s *Searcher) search(name string) bool {
@@ -52,4 +55,21 @@ func (s *Searcher) search(name string) bool {
 	}
 
 	return true
+}
+
+func (s *Searcher) content(file *os.File) string {
+	if strings.HasSuffix(file.Name(), ".md") {
+		p := Parser{}
+		return p.ToHTML(file)
+
+	} else {
+		buf := bytes.NewBuffer(nil)
+		_, err := io.Copy(buf, file)
+
+		if err != nil {
+			log.Fatal("Problems reading file content.")
+		}
+
+		return string(buf.Bytes())
+	}
 }

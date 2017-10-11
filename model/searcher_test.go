@@ -11,4 +11,5 @@ func TestLookFor(t *testing.T) {
 		t.Errorf("Search not done well.")
 	}
 
+	t.Logf("File contents: \n%s", post)
 }

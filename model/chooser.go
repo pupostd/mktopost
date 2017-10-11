@@ -22,9 +22,19 @@ func (c *Chooser) WhichOne(files []*os.File) *os.File {
 
 func (c *Chooser) choose(files []*os.File) *os.File {
 	var chosen *os.File
+	var last int64 = 0
+
 	for _, v := range files {
-		chosen = v // TODO implement rule to choose
-		break
+		info, err := v.Stat()
+		if err != nil {
+			log.Fatal("Could not read file stats to choose.")
+		}
+
+		changed := info.ModTime().Unix()
+		if changed > last {
+			last = changed
+			chosen = v
+		}
 	}
 	return chosen
 }
