@@ -4,10 +4,10 @@ import (
 	"testing"
 )
 
-func Test(t *testing.T) {
+func TestLookFor(t *testing.T) {
 	searcher := Searcher{}
-	post := searcher.SearchRequested("post_one.md")
-	if post != "post_one.md" {
+	post := searcher.LookFor("post_one")
+	if post == "" {
 		t.Errorf("Search not done well.")
 	}
 

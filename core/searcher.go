@@ -4,57 +4,38 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"path/filepath"
 )
 
-//Searcher A class to search and read the resource requested.
+//Searcher A class to search for a name on some folders.
 type Searcher struct {
-	placesToSearch []string
+	filesFound []*os.File
 }
 
-// SearchRequested searches for a requested file.
-func (s *Searcher) SearchRequested(fileName string) string {
+// LookFor searches for a requested file.
+func (s *Searcher) LookFor(name string) string {
+	log.Printf("Received name to search %s", name)
 
-	s.loadPlacesToSearch()
-
-	log.Printf("Received name to search %s", fileName)
-
-	var fileNameFound string
-	var requestedFile *os.File
+	var found string
+	var file *os.File
 	var err error
 
-	for i := 0; i < len(s.placesToSearch); i++ {
-		place := s.placesToSearch[i]
-		requestedFile, err = os.Open(place + fileName)
+	st := Storage{}
+	folders := st.Where()
 
-		if requestedFile != nil {
-			break
+	for i := 0; i < len(folders); i++ {
+		place := folders[i]
+		file, err = os.Open(place + "/" + name + st.FolderContent(place))
+
+		if file != nil {
+			s.filesFound = append(s.filesFound, file)
 		}
 	}
 
-	if err != nil || requestedFile == nil {
+	if err != nil && s.filesFound == nil {
 		log.Printf(fmt.Errorf("file could not be found").Error())
 	}
 
-	if requestedFile != nil {
-		_, fileNameFound = filepath.Split(requestedFile.Name())
-	}
+	found = s.filesFound[0].Name()
 
-	return fileNameFound
-}
-
-func (s *Searcher) addPlacesToSearch(path string) {
-	s.placesToSearch = append(s.placesToSearch, path)
-}
-
-func (s *Searcher) loadPlacesToSearch() {
-
-	conf := PropertiesFile{}
-	conf.LoadJSON("")
-
-	for _, v := range conf.Properties {
-		s.addPlacesToSearch(v.Value)
-	}
-
-	log.Printf("Length of placesToSearch is %d", len(s.placesToSearch))
+	return found
 }

@@ -2,39 +2,22 @@
 
 #### Class: Searcher
 * id self
-* read file __fileReader__
-* return resource
 
 #### Description
-A class to search and read the resource requested.
+A class to search for a _name_ on some _folders_.
 
 #### Contracts
-- +searchRequested
-- -placesToSearch
-- -loadPlacesToSearch
+- +lookFor
 
 #### Knowledge Required
-* resourceNameRequested : __string__ (argument)
-<!-- * resource : __object__ (variable) -->
-* placesToSearch : __aList__ (variable)
-* propertiesResourceName : __string__ (variable)
+* filesFound : __aList__ (variable)
+* storage : [Storage](./cube_Storage.md) (variable)
+* chooser : [Chooser](./cube_Chooser.md) (variable)
+* file : __string__ (variable)
+* name : __string__ (argument)
 
 #### Message Protocol
-* searchRequested(fileName string) file
-* placesToSearch(path string) self
-* loadPlacesToSearch() self
+* lookFor(name string) _string_
 
 #### Events Generated
 None.
-
-
-<!-- #### Class: EngineParser
-* read file <- __Searcher__
-* validate file
-* parse file
-* return html
-
-#### Class: Catalogue
-* get html resource <- __EngineParser__
-* order htmls
-* return html -->

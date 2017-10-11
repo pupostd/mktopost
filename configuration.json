@@ -1,0 +1,8 @@
+{
+  "Properties": [
+    {
+      "Name": "storage.folders",
+      "Value": "../resource/md/;../resource/html/"
+    }
+  ]
+}
