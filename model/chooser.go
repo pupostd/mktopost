@@ -5,9 +5,11 @@ import (
 	"os"
 )
 
+// Chooser A class that is responsible to choose between some files based on a rule.
 type Chooser struct {
 }
 
+// WhichOne chooses the newest file.
 func (c *Chooser) WhichOne(files []*os.File) *os.File {
 	if files != nil && len(files) > 1 {
 		return c.choose(files)
@@ -21,7 +23,7 @@ func (c *Chooser) WhichOne(files []*os.File) *os.File {
 
 func (c *Chooser) choose(files []*os.File) *os.File {
 	var chosen *os.File
-	var last int64 = 0
+	var last int64
 
 	for _, v := range files {
 		info, err := v.Stat()

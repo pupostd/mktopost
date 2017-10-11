@@ -2,19 +2,22 @@ package model
 
 import (
 	"bytes"
-	"gopkg.in/russross/blackfriday.v2"
 	"io"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"gopkg.in/russross/blackfriday.v2"
 )
 
-const parserHtmlFolder = "parser.html.folder"
+const parserHTMLFolder = "parser.html.folder"
 
+// Parser A class to transform a requested resource/file in a new format.
 type Parser struct {
 }
 
+// ToHTML transforms the .md file given to html.
 func (p *Parser) ToHTML(file *os.File) string {
 	st := Storage{}
 	conf := Configuration{}
@@ -31,7 +34,7 @@ func (p *Parser) ToHTML(file *os.File) string {
 	nn := filepath.Base(file.Name())
 	nn = (strings.Split(nn, "."))[0] + ".html"
 
-	st.Save(nn, out, conf.For(parserHtmlFolder))
+	st.Save(nn, out, conf.For(parserHTMLFolder))
 
 	return string(out)
 }

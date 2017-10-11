@@ -63,14 +63,14 @@ func (s *Searcher) content(file *os.File) string {
 		p := Parser{}
 		return p.ToHTML(file)
 
-	} else {
-		buf := bytes.NewBuffer(nil)
-		_, err := io.Copy(buf, file)
-
-		if err != nil {
-			log.Fatal("Problems reading file content.")
-		}
-
-		return string(buf.Bytes())
 	}
+
+	buf := bytes.NewBuffer(nil)
+	_, err := io.Copy(buf, file)
+
+	if err != nil {
+		log.Fatal("Problems reading file content.")
+	}
+
+	return string(buf.Bytes())
 }

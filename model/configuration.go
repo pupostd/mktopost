@@ -8,15 +8,18 @@ import (
 
 const configurationFile = "../configuration.json"
 
+// Configuration A class that is responsible to load the config file properties.
 type Configuration struct {
 	Properties []Property
 }
 
+// Property type is responsible for getting property name and value.
 type Property struct {
 	Name  string
 	Value string
 }
 
+// For reads the value for a property name given.
 func (c *Configuration) For(name string) string {
 	c.load()
 

@@ -7,7 +7,7 @@ import (
 
 func TestWhichOne(t *testing.T) {
 	c := Chooser{}
-	var files []*os.File = nil
+	var files []*os.File
 
 	f1, err := os.Open("../resource/test/dummy_one.txt")
 	if err != nil {
