@@ -13,6 +13,8 @@ The intent of this project is to provide a simple and easy engine, a kind of thi
 | A version controlled directory synced with the documents, posts, created by the user. | Medium | None. | _Git_ must be used. |
 | _Docker_ based server to run it. | Low | None. | Docker and a Cloud based server must be used.
 
+## Usage!
+Under development. web package should be started inside web/ directory 'cause of '../' references.
 <!-- ### Object discovery and specification
 ### Application assembly and scripting
 ### Set of Models -->
