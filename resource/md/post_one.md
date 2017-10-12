@@ -1,5 +1,3 @@
-# Nothing Here
-
 ## On development
 
 * This is a dummy file
