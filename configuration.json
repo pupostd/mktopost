@@ -1,12 +1,20 @@
 {
-  "Properties": [
-    {
-      "Name": "storage.folders",
-      "Value": "../resource/md/;../resource/html/"
-    },
-    {
-      "Name": "parser.html.folder",
-      "Value": "../resource/html/"
-    }
-  ]
+    "Properties": [
+        {
+            "Name": "storage.folders",
+            "Value": "../resource/md/;../resource/html/"
+        },
+        {
+            "Name": "parser.html.folder",
+            "Value": "../resource/html/"
+        },
+        {
+            "Name": "main.template",
+            "Value": "../resource/html/main_template.html"
+        },
+        {
+            "Name": "blog.template",
+            "Value": "../resource/html/blog_template.html"
+        }
+    ]
 }
